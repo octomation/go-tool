@@ -13,10 +13,9 @@ archives:
     linux:  Linux
 
 brews:
-- name:         TODO
-  caveats:      TODO
-  description:  TODO
-  homepage:     TODO
+- name:        TODO
+  description: TODO
+  homepage:    TODO
   commit_author:
     name:  Kamil Samigullin
     email: kamil@samigullin.info
