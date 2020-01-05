@@ -38,10 +38,13 @@ $ wget -qO- https://:install.sh | sh
 ### Source
 
 ```bash
+# use standard go tools
 $ go get -u github.com/:owner/:repository
-# or
+# or use egg tool
 $ egg tools add github.com/:owner/:repository
 ```
+
+> [egg][egg.page]<sup id="anchor-egg">[1](#egg)</sup> is an `extended go get`.
 
 ### Bash and Zsh completions
 
@@ -53,6 +56,8 @@ $ :binary completion zsh  > /path/to/zsh-completions/_:binary.zsh
 ## 🤲 Outcomes
 
 ...
+
+<sup id="egg">1</sup> The project is still in prototyping.[↩](#anchor-egg)
 
 ---
 
@@ -67,3 +72,5 @@ made with ❤️ for everyone
 
 [template.page]:    https://github.com/octomation/go-tool
 [template.icon]:    https://img.shields.io/badge/template-go--tool-blue
+
+[egg.page]:         https://github.com/kamilsk/egg
