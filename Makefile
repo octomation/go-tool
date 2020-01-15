@@ -108,7 +108,7 @@ test-with-coverage-profile:
 
 .PHONY: dist
 dist:
-	@godownloader .goreleaser.yml > .github/install.sh
+	@godownloader .goreleaser.yml > bin/install
 
 .PHONY: format
 format:
