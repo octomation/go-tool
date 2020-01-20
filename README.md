@@ -30,9 +30,9 @@ $ brew install :owner/tap/:binary
 ### Binary
 
 ```bash
-$ curl -sSL https://:install.sh | sh
+$ curl -sSfL https://:install.sh | sh
 # or
-$ wget -qO- https://:install.sh | sh
+$ wget -qO-  https://:install.sh | sh
 ```
 
 ### Source

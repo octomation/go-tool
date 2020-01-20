@@ -10,6 +10,7 @@ GOFLAGS     = -mod=vendor
 GOPRIVATE   = go.octolab.net
 GOPROXY     = direct
 LOCAL       = $(MODULE)
+MAIN        = $(MODULE)
 MODULE      = $(shell $(GO) list -m)
 PACKAGES    = $(shell $(GO) list ./... 2> /dev/null)
 PATHS       = $(shell $(GO) list ./... 2> /dev/null | sed -e "s|$(MODULE)/\{0,1\}||g")
@@ -58,10 +59,11 @@ update:
 		$(GO) get -mod= -u $$packages; \
 	fi
 
-BINARY  = $(BINPATH)/$(shell basename $(MODULE))
+BINARY  = $(GOBIN)/$(shell basename $(MAIN))
 BINPATH = $(PWD)/bin
 COMMIT  = $(shell git rev-parse --verify HEAD)
 DATE    = $(shell date +%Y-%m-%dT%T%Z)
+GOBIN   = $(BINPATH)
 LDFLAGS = -ldflags "-s -w -X main.commit=$(COMMIT) -X main.date=$(DATE)"
 
 export PATH := $(BINPATH):$(PATH)
@@ -75,7 +77,6 @@ build-env:
 	@echo "LDFLAGS:     $(LDFLAGS)"
 
 .PHONY: build
-build: MAIN = .
 build:
 	@$(GO) build -o $(BINARY) $(LDFLAGS) $(MAIN)
 

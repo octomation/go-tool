@@ -1,5 +1,8 @@
+---
+project_name: %template%
+
 archives:
-- id: binary
+- id: %template%
   files:
   - LICENSE
   format: tar.gz
@@ -11,19 +14,28 @@ archives:
     linux:  Linux
 
 brews:
-- name:        TODO
-  description: TODO
-  homepage:    TODO
+- name: %template%
   commit_author:
     name:  Kamil Samigullin
     email: kamil@samigullin.info
+  description: %template%
   folder: Formula
+  homepage: %template%
   github:
-    name:  TODO
-    owner: TODO
+    owner: %template%
+    name:  %template%
+  install: |
+    bin.install "%template%"
+    output = Utils.popen_read("#{bin}/%template% completion bash")
+    (bash_completion/"%template%").write output
+    output = Utils.popen_read("#{bin}/%template% completion zsh")
+    (zsh_completion/"_%template%").write output
+    prefix.install_metafiles
+  test: |
+    system "#{bin}/%template% --version"
 
 builds:
-- binary: TODO
+- binary: %template%
   env:
   - CGO_ENABLED=0
   goarch:
@@ -38,7 +50,6 @@ builds:
 checksum: { name_template: checksums.txt }
 
 release:
-  draft: false
   github:
-    name:  TODO
-    owner: TODO
+    owner: %template%
+    name:  %template%
