@@ -70,7 +70,7 @@ made with ❤️ for everyone
 
 [promo.page]:       https://github.com/:owner/:repository
 
+[egg.page]:         https://github.com/kamilsk/egg
+
 [template.page]:    https://github.com/octomation/go-tool
 [template.icon]:    https://img.shields.io/badge/template-go--tool-blue
-
-[egg.page]:         https://github.com/kamilsk/egg
