@@ -4,7 +4,7 @@ go 1.11
 
 require (
 	github.com/golang/mock v1.4.0
-	github.com/golangci/golangci-lint v1.23.3
+	github.com/golangci/golangci-lint v1.23.6
 	github.com/kamilsk/egg v0.0.13
 	golang.org/x/tools v0.2.2
 )
