@@ -39,12 +39,12 @@ $ wget -qO-  https://:install.sh | sh
 
 ```bash
 # use standard go tools
-$ go get -u github.com/:owner/:repository
+$ go get github.com/:owner/:repository@:version
 # or use egg tool
-$ egg tools add github.com/:owner/:repository
+$ egg tools add github.com/:owner/:repository@:version
 ```
 
-> [egg][egg.page]<sup id="anchor-egg">[1](#egg)</sup> is an `extended go get`.
+> [egg][]<sup id="anchor-egg">[1](#egg)</sup> is an `extended go get`.
 
 ### Bash and Zsh completions
 
@@ -63,14 +63,11 @@ $ :binary completion zsh  > /path/to/zsh-completions/_:binary.zsh
 
 made with ❤️ for everyone
 
-[build.icon]:       https://travis-ci.org/:owner/:repository.svg?branch=master
 [build.page]:       https://travis-ci.org/:owner/:repository
-
+[build.icon]:       https://travis-ci.org/:owner/:repository.svg?branch=master
 [design.page]:      https://www.notion.so/33715348cc114ea79dd350a25d16e0b0?r=0b753cbf767346f5a6fd51194829a2f3
-
 [promo.page]:       https://github.com/:owner/:repository
-
-[egg.page]:         https://github.com/kamilsk/egg
-
 [template.page]:    https://github.com/octomation/go-tool
 [template.icon]:    https://img.shields.io/badge/template-go--tool-blue
+
+[egg]:              https://github.com/kamilsk/egg
