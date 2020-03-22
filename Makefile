@@ -146,7 +146,7 @@ dist-check:
 dist-dump:
 	@godownloader .goreleaser.yml > bin/install
 
-TOOLFLAGS = $(GOFLAGS)
+TOOLFLAGS = -mod=
 
 .PHONY: tools-env
 tools-env:
