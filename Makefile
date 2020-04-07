@@ -69,12 +69,20 @@ update:
 	else \
 		packages="`go list -f $(selector) -m all`"; \
 	fi; \
-	if [[ "`go version`" == *1.1[1-3]* ]]; then go get -d -mod= -u $$packages; else go get -d -u $$packages; fi; \
+	if [[ "`go version`" == *1.1[1-3]* ]]; then \
+		go get -d -mod= -u $$packages; \
+	else \
+		go get -d -u $$packages; \
+	fi; \
 	if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
 
 .PHONY: update-all
 update-all:
-	@if [[ $(go version) == *1.1[1-3]* ]]; then go get -d -mod= -u ./...; else go get -d -u ./...; fi \
+	@if [[ $(go version) == *1.1[1-3]* ]]; then \
+		go get -d -mod= -u ./...; \
+	else \
+		go get -d -u ./...; \
+	fi \
 	if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
 
 .PHONY: format
