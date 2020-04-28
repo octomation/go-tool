@@ -1,4 +1,4 @@
-module todo
+module tool
 
 go 1.11
 
