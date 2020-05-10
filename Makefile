@@ -219,3 +219,10 @@ generate: go-generate format
 
 .PHONY: refresh
 refresh: deps-shake update deps generate format test build
+
+
+.PHONY: hooks
+hooks:
+	@ls .git/hooks | grep -v .sample | sed 's|.*|.git/hooks/&|' | xargs rm -f || true
+	@cp githooks/pre-commit .git/hooks/
+	@cp githooks/post-merge .git/hooks/
