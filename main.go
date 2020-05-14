@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"runtime/debug"
 
 	"go.octolab.org/errors"
 	"go.octolab.org/safe"
@@ -24,6 +25,13 @@ var (
 	stderr  = io.Writer(os.Stderr)
 	stdout  = io.Writer(os.Stdout)
 )
+
+func init() {
+	if info, available := debug.ReadBuildInfo(); available && commit == unknown {
+		version = info.Main.Version
+		commit = fmt.Sprintf("%s, mod sum: %s", commit, info.Main.Sum)
+	}
+}
 
 func main() {
 	ctx, cancel := context.WithCancel(context.Background())

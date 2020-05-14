@@ -1,7 +1,8 @@
 # sourced by https://github.com/octomation/makefiles
 
 .DEFAULT_GOAL = test-with-coverage
-GO_VERSIONS   = 1.11 1.12 1.13 1.14
+GIT_HOOKS     = pre-commit post-merge
+GO_VERSIONS   = 1.13 1.14
 
 SHELL := /bin/bash -euo pipefail # `explain set -euo pipefail`
 
@@ -204,6 +205,14 @@ $(foreach version,$(GO_VERSIONS),$(render_go_tpl))
 
 endif
 
+.PHONY: hooks
+hooks:
+	@ls .git/hooks | grep -v .sample | sed 's|.*|.git/hooks/&|' | xargs rm -f || true
+	@for hook in $(GIT_HOOKS); do cp githooks/$$hook .git/hooks/; done
+
+
+.PHONY: init
+init: deps test lint hooks
 
 .PHONY: clean
 clean: build-clean deps-clean install-clean test-clean
@@ -219,10 +228,3 @@ generate: go-generate format
 
 .PHONY: refresh
 refresh: deps-shake update deps generate format test build
-
-
-.PHONY: hooks
-hooks:
-	@ls .git/hooks | grep -v .sample | sed 's|.*|.git/hooks/&|' | xargs rm -f || true
-	@cp githooks/pre-commit .git/hooks/
-	@cp githooks/post-merge .git/hooks/
