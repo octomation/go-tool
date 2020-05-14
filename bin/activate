@@ -82,6 +82,18 @@ up () {
     get -u $@
 }
 
+release () {
+    latest=$(git describe --tags 2>/dev/null)
+    if [[ $? > 0 ]]; then
+        (>&2 echo no have any release)
+        exit 1
+    fi
+    if [[ "${latest}" =~ -[0-9]+-g[a-z0-9]+$ ]]; then
+        latest=$(echo ${latest} | rev | cut -d - -f3- | rev)
+    fi
+    gorelease -base=${latest} -version=${1:-}
+}
+
 deactivate nondestructive
 
 _OS=$(uname -s | tr '[:upper:]' '[:lower:]')

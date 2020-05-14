@@ -1,7 +1,7 @@
 # sourced by https://github.com/octomation/makefiles
 
 .DEFAULT_GOAL = test-with-coverage
-GIT_HOOKS     = pre-commit post-merge
+GIT_HOOKS     = post-merge pre-commit pre-push
 GO_VERSIONS   = 1.13 1.14
 
 SHELL := /bin/bash -euo pipefail # `explain set -euo pipefail`
