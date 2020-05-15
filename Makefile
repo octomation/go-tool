@@ -61,14 +61,9 @@ deps-shake:
 	@go mod tidy
 	@if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
 
-.PHONY: module-deps
-module-deps:
-	@go mod download
-	@if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
-
-.PHONY: update
-update: selector = '{{if not (or .Main .Indirect)}}{{.Path}}{{end}}'
-update:
+.PHONY: deps-update
+deps-update: selector = '{{if not (or .Main .Indirect)}}{{.Path}}{{end}}'
+deps-update:
 	@if command -v egg > /dev/null; then \
 		packages="`egg deps list`"; \
 	else \
@@ -81,8 +76,8 @@ update:
 	fi; \
 	if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
 
-.PHONY: update-all
-update-all:
+.PHONY: deps-update-all
+deps-update-all:
 	@if [[ "`go version`" == *1.1[1-3]* ]]; then \
 		go get -d -mod= -u ./...; \
 	else \
@@ -90,8 +85,13 @@ update-all:
 	fi; \
 	if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
 
-.PHONY: format
-format:
+.PHONY: module-deps
+module-deps:
+	@go mod download
+	@if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
+
+.PHONY: go-fmt
+go-fmt:
 	@if command -v goimports > /dev/null; then \
 		goimports -local $(LOCAL) -ungroup -w $(PATHS); \
 	else \
@@ -223,8 +223,14 @@ deps: module-deps toolset
 .PHONY: env
 env: go-env build-env tools-env
 
+.PHONY: format
+format: go-fmt
+
 .PHONY: generate
 generate: go-generate format
 
 .PHONY: refresh
 refresh: deps-shake update deps generate format test build
+
+.PHONY: update
+update: deps-update
