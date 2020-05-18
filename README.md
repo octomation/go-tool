@@ -9,7 +9,7 @@
 
 ...
 
-Full description of the idea is available [here][design.page].
+A full description of the idea is available [here][design.page].
 
 ## 🏆 Motivation
 
@@ -35,6 +35,8 @@ $ curl -sSfL https://:install.sh | sh
 $ wget -qO-  https://:install.sh | sh
 ```
 
+> Don't forget about [security](https://www.idontplaydarts.com/2016/04/detecting-curl-pipe-bash-server-side/).
+
 ### Source
 
 ```bash
@@ -44,20 +46,22 @@ $ go get github.com/:owner/:repository@:version
 $ egg tools add github.com/:owner/:repository@:version
 ```
 
-> [egg][]<sup id="anchor-egg">[1](#egg)</sup> is an `extended go get`.
+> [egg][] is an `extended go get`.
 
 ### Bash and Zsh completions
 
 ```bash
 $ :binary completion bash > /path/to/bash_completion.d/:binary.sh
 $ :binary completion zsh  > /path/to/zsh-completions/_:binary.zsh
+# or autodetect
+$ source <(:binary completion)
 ```
+
+> See `kubectl` [documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/#enabling-shell-autocompletion).
 
 ## 🤲 Outcomes
 
 ...
-
-<sup id="egg">1</sup> The project is still in prototyping.[↩](#anchor-egg)
 
 ---
 
