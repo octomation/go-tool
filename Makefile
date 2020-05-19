@@ -1,7 +1,7 @@
 # sourced by https://github.com/octomation/makefiles
 
 .DEFAULT_GOAL = test-with-coverage
-GIT_HOOKS     = post-merge pre-commit pre-push
+GIT_HOOKS     = post-merge pre-commit
 GO_VERSIONS   = 1.13 1.14
 
 SHELL := /bin/bash -euo pipefail # `explain set -euo pipefail`
@@ -56,8 +56,8 @@ deps-check:
 deps-clean:
 	@go clean -modcache
 
-.PHONY: deps-shake
-deps-shake:
+.PHONY: deps-tidy
+deps-tidy:
 	@go mod tidy
 	@if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
 
@@ -230,7 +230,7 @@ format: go-fmt
 generate: go-generate format
 
 .PHONY: refresh
-refresh: deps-shake update deps generate format test build
+refresh: deps-tidy update deps generate format test build
 
 .PHONY: update
 update: deps-update
