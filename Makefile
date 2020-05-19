@@ -56,6 +56,11 @@ deps-check:
 deps-clean:
 	@go clean -modcache
 
+.PHONY: deps-fetch
+deps-fetch:
+	@go mod download
+	@if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
+
 .PHONY: deps-tidy
 deps-tidy:
 	@go mod tidy
@@ -84,11 +89,6 @@ deps-update-all:
 		go get -d -u ./...; \
 	fi; \
 	if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
-
-.PHONY: module-deps
-module-deps:
-	@go mod download
-	@if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
 
 .PHONY: go-fmt
 go-fmt:
@@ -218,7 +218,7 @@ init: deps test lint hooks
 clean: build-clean deps-clean install-clean test-clean
 
 .PHONY: deps
-deps: module-deps toolset
+deps: deps-fetch toolset
 
 .PHONY: env
 env: go-env build-env tools-env
