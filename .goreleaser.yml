@@ -15,6 +15,7 @@ archives:
 
 brews:
   - name: %template%
+    caveats: %template%
     commit_author:
       name:  Kamil Samigullin
       email: kamil@samigullin.info
@@ -32,7 +33,7 @@ brews:
       (zsh_completion/"_%template%").write output
       prefix.install_metafiles
     test: |
-      system "#{bin}/%template% --version"
+      system "#{bin}/%template% version"
 
 builds:
   - binary: %template%
