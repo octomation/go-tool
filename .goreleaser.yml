@@ -36,7 +36,8 @@ brews:
       system "#{bin}/%template% version"
 
 builds:
-  - binary: %template%
+  - id: %template%
+    binary: %template%
     env:
       - CGO_ENABLED=0
     flags:
@@ -47,7 +48,8 @@ builds:
     goos:
       - darwin
       - linux
-    ldflags: -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}}
+    ldflags:
+      - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}}
     main: .
 
 checksum: { name_template: checksums.txt }
