@@ -4,7 +4,7 @@ go 1.13
 
 require (
 	github.com/golang/mock v1.4.3
-	github.com/golangci/golangci-lint v1.27.0
+	github.com/golangci/golangci-lint v1.28.1
 	golang.org/x/tools v0.3.3
 )
 
