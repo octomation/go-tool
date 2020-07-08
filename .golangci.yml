@@ -1,62 +1,61 @@
 linters:
   fast: true
   enable:
-    - deadcode
-    - errcheck
-    - gosimple
-    - govet
-    - ineffassign
-    - staticcheck
-    - structcheck
-    - typecheck
-    - unused
-    - varcheck
+    - deadcode      # https://github.com/golangci/go-misc
+    - errcheck      # https://github.com/golangci/errcheck
+    - gosimple      # https://github.com/dominikh/go-tools
+    - govet         # https://github.com/golang/tools
+    - ineffassign   # https://github.com/golangci/ineffassign
+    - staticcheck   # https://github.com/dominikh/go-tools
+    - structcheck   # https://github.com/opennota/check
+    - typecheck     # -
+    - unused        # https://github.com/dominikh/go-tools/tree/master/unused
+    - varcheck      # https://github.com/opennota/check
 
-    - bodyclose
-    - gocritic
+    - bodyclose     # https://github.com/timakin/bodyclose
+    - gocritic      # https://github.com/go-critic/go-critic
 
-#    - asciicheck
-#    - depguard
-#    - dogsled
-#    - dupl
-#    - exhaustive
-#    - exportloopref
-#    - funlen
-#    - gochecknoglobals
-#    - gochecknoinits
-#    - gocognit
-#    - goconst
-#    - gocyclo
-#    - godot
-#    - godox
-#    - goerr113
-#    - gofmt
-#    - gofumpt
-#    - goheader
-#    - goimports
-#    - golint
-#    - gomnd
-#    - gomodguard
-#    - goprintffuncname
-#    - gosec
-#    - interfacer
-#    - lll
-#    - maligned
-#    - megacheck
-#    - misspell
-#    - nakedret
-#    - nestif
-#    - noctx
-#    - nolintlint
-#    - prealloc
-#    - rowserrcheck
-#    - scopelint
-#    - sqlclosecheck
-#    - stylecheck
-#    - testpackage
-#    - unconvert
-#    - unparam
-#    - whitespace
-#    - wsl
+#    - asciicheck         # https://github.com/tdakkota/asciicheck
+#    - depguard           # https://github.com/OpenPeeDeeP/depguard
+#    - dogsled            # https://github.com/alexkohler/dogsled
+#    - dupl               # https://github.com/golangci/dupl
+#    - exhaustive         # https://github.com/nishanths/exhaustive
+#    - exportloopref      # https://github.com/kyoh86/exportloopref
+#    - funlen             # https://github.com/ultraware/funlen
+#    - gochecknoglobals   # https://github.com/leighmcculloch/gochecknoglobals
+#    - gochecknoinits     # https://github.com/leighmcculloch/gochecknoinits
+#    - gocognit           # https://github.com/uudashr/gocognit
+#    - goconst            # https://github.com/golangci/goconst
+#    - gocyclo            # https://github.com/golangci/gocyclo
+#    - godot              # https://github.com/tetafro/godot
+#    - godox              # https://github.com/matoous/godox
+#    - goerr113           # https://github.com/Djarvur/go-err113
+#    - gofmt              # https://github.com/golangci/gofmt
+#    - gofumpt            # https://github.com/mvdan/gofumpt
+#    - goheader           # https://github.com/denis-tingajkin/go-header
+#    - goimports          # https://github.com/golangci/gofmt
+#    - golint             # https://github.com/golangci/lint-1
+#    - gomnd              # https://github.com/tommy-muehle/go-mnd
+#    - gomodguard         # https://github.com/ryancurrah/gomodguard
+#    - goprintffuncname   # https://github.com/jirfag/go-printf-func-name
+#    - gosec              # https://github.com/securego/gosec
+#    - interfacer         # https://github.com/mvdan/interfacer
+#    - lll                # https://github.com/walle/lll
+#    - maligned           # https://github.com/golangci/maligned
+#    - misspell           # https://github.com/golangci/misspell
+#    - nakedret           # https://github.com/alexkohler/nakedret
+#    - nestif             # https://github.com/nakabonne/nestif
+#    - noctx              # https://github.com/sonatard/noctx
+#    - nolintlint         # https://github.com/golangci/golangci-lint/blob/master/pkg/golinters/nolintlint/README.md
+#    - prealloc           # https://github.com/golangci/prealloc
+#    - rowserrcheck       # https://github.com/jingyugao/rowserrcheck
+#    - scopelint          # https://github.com/kyoh86/scopelint
+#    - sqlclosecheck      # https://github.com/ryanrolds/sqlclosecheck
+#    - stylecheck         # https://github.com/dominikh/go-tools/tree/master/stylecheck
+#    - testpackage        # https://github.com/maratori/testpackage
+#    - unconvert          # https://github.com/golangci/unconvert
+#    - unparam            # https://github.com/mvdan/unparam
+#    - whitespace         # https://github.com/ultraware/whitespace
+#    - wsl                # https://github.com/bombsimon/wsl
 
 #    - https://github.com/kyoh86/looppointer
