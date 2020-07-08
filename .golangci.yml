@@ -1,56 +1,62 @@
 linters:
   fast: true
   enable:
-    - govet
-    - errcheck
-    - staticcheck
-    - unused
-    - gosimple
-    - structcheck
-    - varcheck
-    - ineffassign
     - deadcode
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - structcheck
     - typecheck
+    - unused
+    - varcheck
 
     - bodyclose
-#    - golint
-#    - rowserrcheck
-#    - stylecheck
-#    - gosec
-#    - interfacer
-#    - unconvert
+    - gocritic
+
+#    - asciicheck
+#    - depguard
+#    - dogsled
 #    - dupl
+#    - exhaustive
+#    - exportloopref
+#    - funlen
+#    - gochecknoglobals
+#    - gochecknoinits
+#    - gocognit
 #    - goconst
 #    - gocyclo
-#    - gocognit
-#    - asciicheck
-#    - gofmt
-#    - goimports
-#    - maligned
-#    - depguard
-#    - misspell
-#    - lll
-#    - unparam
-#    - dogsled
-#    - nakedret
-#    - prealloc
-#    - scopelint
-    - gocritic
-#    - gochecknoinits
-#    - gochecknoglobals
+#    - godot
 #    - godox
-#    - funlen
+#    - goerr113
+#    - gofmt
+#    - gofumpt
+#    - goheader
+#    - goimports
+#    - golint
+#    - gomnd
+#    - gomodguard
+#    - goprintffuncname
+#    - gosec
+#    - interfacer
+#    - lll
+#    - maligned
+#    - megacheck
+#    - misspell
+#    - nakedret
+#    - nestif
+#    - noctx
+#    - nolintlint
+#    - prealloc
+#    - rowserrcheck
+#    - scopelint
+#    - sqlclosecheck
+#    - stylecheck
+#    - testpackage
+#    - unconvert
+#    - unparam
 #    - whitespace
 #    - wsl
-#    - goprintffuncname
-#    - gomnd
-#    - goerr113
-#    - gomodguard
-#    - godot
-#    - testpackage
-#    - nestif
-#    - nolintlint
-#    - megacheck
 
-#    - https://github.com/kyoh86/exportloopref
 #    - https://github.com/kyoh86/looppointer
