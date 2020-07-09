@@ -109,6 +109,7 @@ lint:
 	else \
 		go vet $(PACKAGES); \
 	fi
+	@if command -v looppointer > /dev/null; then looppointer ./...; fi
 
 .PHONY: test
 test:

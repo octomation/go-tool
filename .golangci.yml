@@ -13,6 +13,7 @@ linters:
     - varcheck      # https://github.com/opennota/check
 
     - bodyclose     # https://github.com/timakin/bodyclose
+    - exportloopref # https://github.com/kyoh86/exportloopref
     - gocritic      # https://github.com/go-critic/go-critic
 
 #    - asciicheck         # https://github.com/tdakkota/asciicheck
@@ -20,7 +21,6 @@ linters:
 #    - dogsled            # https://github.com/alexkohler/dogsled
 #    - dupl               # https://github.com/mibk/dupl
 #    - exhaustive         # https://github.com/nishanths/exhaustive
-#    - exportloopref      # https://github.com/kyoh86/exportloopref
 #    - funlen             # https://github.com/ultraware/funlen
 #    - gochecknoglobals   # https://github.com/leighmcculloch/gochecknoglobals
 #    - gochecknoinits     # https://github.com/leighmcculloch/gochecknoinits
