@@ -28,9 +28,9 @@ brews:
     install: |
       bin.install "%template%"
       output = Utils.popen_read("#{bin}/%template% completion bash")
-      (bash_completion/"%template%").write output
+      (bash_completion/%template%).write output
       output = Utils.popen_read("#{bin}/%template% completion zsh")
-      (zsh_completion/"_%template%").write output
+      (zsh_completion/_%template%).write output
       prefix.install_metafiles
     test: |
       system "#{bin}/%template% version"
