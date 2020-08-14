@@ -9,7 +9,7 @@ import (
 	. "tool/internal/cmd"
 )
 
-func TestNew(t *testing.T) {
+func TestRoot(t *testing.T) {
 	root := New()
 	require.NotNil(t, root)
 	assert.NotEmpty(t, root.Use)
