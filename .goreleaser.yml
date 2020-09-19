@@ -29,6 +29,8 @@ brews:
       bin.install "%template%"
       output = Utils.popen_read("#{bin}/%template% completion bash")
       (bash_completion/%template%).write output
+      output = Utils.popen_read("#{bin}/%template% completion fish")
+      (fish_completion/%template%.fish).write output
       output = Utils.popen_read("#{bin}/%template% completion zsh")
       (zsh_completion/_%template%).write output
       prefix.install_metafiles
