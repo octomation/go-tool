@@ -8,31 +8,35 @@ archives:
     format: tar.gz
     name_template: "{{.Binary}}_{{.Version}}_{{.Os}}-{{.Arch}}"
     replacements:
-      386:    32bit
-      amd64:  64bit
+      386: 32bit
+      amd64: 64bit
       darwin: macOS
-      linux:  Linux
+      linux: Linux
 
 brews:
   - name: %template%
     caveats: %template%
     commit_author:
-      name:  Kamil Samigullin
+      name: Kamil Samigullin
       email: kamil@samigullin.info
     description: %template%
     folder: Formula
     homepage: %template%
     github:
       owner: %template%
-      name:  %template%
+      name: %template%
     install: |
       bin.install "%template%"
+
       output = Utils.popen_read("#{bin}/%template% completion bash")
-      (bash_completion/%template%).write output
+      (bash_completion/"%template%").write output
+
       output = Utils.popen_read("#{bin}/%template% completion fish")
-      (fish_completion/%template%.fish).write output
+      (fish_completion/"eksctl.fish").write output
+
       output = Utils.popen_read("#{bin}/%template% completion zsh")
-      (zsh_completion/_%template%).write output
+      (zsh_completion/"_%template%").write output
+
       prefix.install_metafiles
     test: |
       system "#{bin}/%template% version"
@@ -59,4 +63,4 @@ checksum: { name_template: checksums.txt }
 release:
   github:
     owner: %template%
-    name:  %template%
+    name: %template%
