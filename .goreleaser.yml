@@ -32,7 +32,7 @@ brews:
       (bash_completion/"%template%").write output
 
       output = Utils.popen_read("#{bin}/%template% completion fish")
-      (fish_completion/"eksctl.fish").write output
+      (fish_completion/"%template%.fish").write output
 
       output = Utils.popen_read("#{bin}/%template% completion zsh")
       (zsh_completion/"_%template%").write output
