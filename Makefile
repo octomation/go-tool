@@ -4,6 +4,7 @@
 GIT_HOOKS     = post-merge pre-commit pre-push
 GO_VERSIONS   = 1.14 1.15
 GO111MODULE   = on
+SHELL         = /bin/bash -euo pipefail
 
 AT    := @
 OS    := $(shell uname -s | tr '[:upper:]' '[:lower:]')
@@ -148,7 +149,7 @@ test-clean:
 
 test-quick: GOTAGS = integration,tools
 test-quick:
-	@go test -run ^Fake$$ -tags $(GOTAGS) ./... | grep -v 'no tests to run'
+	@go test -run ^Fake$$ -tags $(GOTAGS) ./... | { grep -v 'no tests to run' || true; }
 	@go test -timeout $(TIMEOUT) $(PACKAGES)
 .PHONY: test-quick
 
@@ -223,21 +224,6 @@ install:
 install-clean:
 	@go clean -cache
 .PHONY: install-clean
-
-server: BINARY = $(BINPATH)/server
-server: MAIN   = ./cmd/server/main.go
-server: build
-.PHONY: server
-
-server-with-race: BINARY = $(BINPATH)/server-race
-server-with-race: MAIN   = ./cmd/server/main.go
-server-with-race: build-with-race
-.PHONY: server-with-race
-
-client: BINARY = $(BINPATH)/client
-client: MAIN   = ./cmd/client/main.go
-client: build
-.PHONY: client
 
 dist-check:
 	@goreleaser --snapshot --skip-publish --rm-dist
