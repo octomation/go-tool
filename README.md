@@ -1,6 +1,8 @@
 > # 🧩 Tool
 >
 > Template for typical Go tool.
+>
+> > made with ❤️ for everyone
 
 [![Build][build.icon]][build.page]
 [![Documentation][docs.icon]][docs.page]
@@ -69,9 +71,7 @@ $ source <(:binary completion)
 
 ...
 
----
-
-made with ❤️ for everyone
+<!-- references -->
 
 [build.page]:       https://travis-ci.com/:owner/:repository
 [build.icon]:       https://travis-ci.com/:owner/:repository.svg?branch=master
