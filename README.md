@@ -1,8 +1,6 @@
-> # 🧩 Tool
+> # 🧩 Tool <p align="right"><small>made with ❤️ for everyone</small></p>
 >
 > Template for typical Go tool.
->
-> > made with ❤️ for everyone
 
 [![Build][build.icon]][build.page]
 [![Documentation][docs.icon]][docs.page]
