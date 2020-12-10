@@ -1,4 +1,4 @@
-> # 🧩 Tool <p align="right"><small>made with ❤️ for everyone</small></p>
+> # 🧩 Tool
 >
 > Template for typical Go tool.
 
@@ -69,7 +69,7 @@ $ source <(:binary completion)
 
 ...
 
-<!-- references -->
+<p align="right">made with ❤️ for everyone</p>
 
 [build.page]:       https://travis-ci.com/:owner/:repository
 [build.icon]:       https://travis-ci.com/:owner/:repository.svg?branch=master
