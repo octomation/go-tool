@@ -1,9 +1,9 @@
-package cmd
+package command
 
 import (
 	"github.com/spf13/cobra"
 
-	"tool/internal/cmd/demo"
+	"tool/internal/command/demo"
 )
 
 // New returns the new root command.
