@@ -69,11 +69,13 @@ linters:
 #    - paralleltest       # https://github.com/kunwardeep/paralleltest
 #    - prealloc           # https://github.com/alexkohler/prealloc
 #    - predeclared        # https://github.com/nishanths/predeclared
+#    - promlinter         # https://github.com/yeya24/promlinter
 #    - revive             # https://github.com/mgechev/revive
 #    - rowserrcheck       # https://github.com/jingyugao/rowserrcheck
 #    - scopelint          # https://github.com/kyoh86/scopelint (deprecated)
 #    - sqlclosecheck      # https://github.com/ryanrolds/sqlclosecheck
 #    - stylecheck         # https://github.com/dominikh/go-tools/tree/master/stylecheck
+#    - tagliatelle        # https://github.com/ldez/tagliatelle
 #    - testpackage        # https://github.com/maratori/testpackage
 #    - thelper            # https://github.com/kulti/thelper
 #    - tparallel          # https://github.com/moricho/tparallel
