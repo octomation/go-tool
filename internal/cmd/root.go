@@ -1,6 +1,10 @@
 package cmd
 
-import "github.com/spf13/cobra"
+import (
+	"github.com/spf13/cobra"
+
+	"tool/internal/cmd/demo"
+)
 
 // New returns the new root command.
 func New() *cobra.Command {
@@ -14,7 +18,11 @@ func New() *cobra.Command {
 		SilenceErrors: false,
 		SilenceUsage:  true,
 	}
+
 	/* configure instance */
-	command.AddCommand( /* related commands */ )
+	command.AddCommand(
+		demo.Panic(),
+	)
+
 	return &command
 }

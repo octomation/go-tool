@@ -50,7 +50,8 @@ func main() {
 }
 
 func shutdown(err error) {
-	if recovered, is := errors.Unwrap(err).(errors.Recovered); is {
+	var recovered errors.Recovered
+	if errors.As(err, &recovered) {
 		unsafe.DoSilent(fmt.Fprintf(stderr, "recovered: %+v\n", recovered.Cause()))
 		unsafe.DoSilent(fmt.Fprintln(stderr, "---"))
 		unsafe.DoSilent(fmt.Fprintf(stderr, "%+v\n", err))
