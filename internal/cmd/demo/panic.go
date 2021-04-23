@@ -15,7 +15,7 @@ func Panic() *cobra.Command {
 		Use: "panic",
 		Run: func(cmd *cobra.Command, args []string) {
 			if len(args) == 0 {
-				args = []string{"unexpected panic"}
+				args = []string{"unexpected", cmd.Name()}
 			}
 			panic(strings.Join(args, " "))
 		},
