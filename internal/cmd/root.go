@@ -22,6 +22,7 @@ func New() *cobra.Command {
 	/* configure instance */
 	command.AddCommand(
 		demo.Panic(),
+		demo.Stderr(),
 		demo.Stdout(),
 	)
 
