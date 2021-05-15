@@ -14,8 +14,8 @@ env:
 go:
   - master
   - 1.x
-  - 1.15.x
   - 1.16.x
+  - 1.17.x
 
 jobs:
   allow_failures:
@@ -24,7 +24,7 @@ jobs:
 before_script:
   - make env deps-fetch
   - |
-    if [[ $TRAVIS_GO_VERSION == 1.16* ]]; then
+    if [[ $TRAVIS_GO_VERSION == 1.17* ]]; then
       curl -sL $CODECLIMATE > /home/travis/gopath/bin/cc-test-reporter
       chmod +x /home/travis/gopath/bin/cc-test-reporter
       cc-test-reporter before-build
@@ -32,7 +32,7 @@ before_script:
 
 script:
   - |
-    if [[ $TRAVIS_GO_VERSION == 1.16* ]]; then
+    if [[ $TRAVIS_GO_VERSION == 1.17* ]]; then
       make test-with-coverage
     else
       make test
@@ -40,7 +40,7 @@ script:
 
 after_script:
   - |
-    if [[ $TRAVIS_GO_VERSION == 1.16* ]]; then
+    if [[ $TRAVIS_GO_VERSION == 1.17* ]]; then
       sed -i "s|$(go list -m)/||g" c.out # https://github.com/codeclimate/test-reporter/issues/378
       cc-test-reporter after-build -t gocov -p $(go list -m) --exit-code $TRAVIS_TEST_RESULT
     fi
@@ -51,7 +51,7 @@ deploy:
     script: curl -sL https://git.io/goreleaser | bash
     on:
       tags: true
-      condition: $TRAVIS_GO_VERSION == 1.16*
+      condition: $TRAVIS_GO_VERSION == 1.17*
 
 notifications:
   slack:
