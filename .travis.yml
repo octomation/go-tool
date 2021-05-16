@@ -55,4 +55,4 @@ deploy:
 
 notifications:
   slack:
-    secure: travis encrypt "..." --add notifications.slack --com
+    secure: travis encrypt "$(git config slack.channel)" --add notifications.slack --com
