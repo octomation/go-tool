@@ -2,19 +2,17 @@
 
 .DEFAULT_GOAL = check
 GIT_HOOKS     = post-merge pre-commit pre-push
-GO_VERSIONS   = 1.15 1.16
+GO_VERSIONS   = 1.16 1.17
 GO111MODULE   = on
 
 AT    := @
 ARCH  := $(shell uname -m | tr '[:upper:]' '[:lower:]')
 OS    := $(shell uname -s | tr '[:upper:]' '[:lower:]')
-DATE  := $(shell date +%Y-%m-%dT%T%Z)
+DATE  := $(shell date -u +%Y-%m-%dT%T%Z)
 SHELL := /usr/bin/env bash -euo pipefail -c
 
 make-verbose:
-	$(eval AT :=)
-	$(eval MAKE := $(MAKE) verbose)
-	@echo >/dev/null
+	$(eval AT :=) $(eval MAKE := $(MAKE) verbose) @true
 .PHONY: make-verbose
 
 todo:
@@ -23,7 +21,7 @@ todo:
 		--exclude-dir={bin,components,node_modules,vendor} \
 		--color \
 		--text \
-		-nRo -E ' TODO:.*|SkipNow' . || true
+		-inRo -E ' TODO:.*|SkipNow' . || true
 .PHONY: todo
 
 COMMIT  := $(shell git rev-parse --verify HEAD)
