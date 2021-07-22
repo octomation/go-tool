@@ -49,7 +49,7 @@ jobs:
       - run: make install
       - run: '[ $(ls bin/linux/*/* | wc -l) = 1 ]'
 
-  coverage:
+  report:
     needs: [ test ]
     runs-on: ubuntu-18.04
 
