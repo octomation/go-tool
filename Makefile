@@ -2,7 +2,7 @@
 
 .DEFAULT_GOAL = check
 GIT_HOOKS     = post-merge pre-commit pre-push
-GO_VERSIONS   = 1.17 1.18
+GO_VERSIONS   = 1.18 1.19
 
 AT    := @
 ARCH  := $(shell uname -m | tr '[:upper:]' '[:lower:]')
