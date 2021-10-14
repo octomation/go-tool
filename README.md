@@ -30,7 +30,7 @@ A full description of the idea is available [here][design.page].
 ### Homebrew
 
 ```bash
-$ brew install :owner/tap/:binary
+$ brew install octolab/tap/tool
 ```
 
 ### Binary
@@ -47,9 +47,9 @@ $ wget -qO-  https://raw.githubusercontent.com/octomation/go-tool/main/bin/insta
 
 ```bash
 # use standard go tools
-$ go get github.com/:owner/:repository@:version
+$ go get github.com/octomation/go-tool@latest
 # or use egg tool
-$ egg tools add github.com/:owner/:repository@:version
+$ egg tools add github.com/octomation/go-tool@latest
 ```
 
 > [egg][] is an `extended go get`.
@@ -57,9 +57,9 @@ $ egg tools add github.com/:owner/:repository@:version
 ### Shell completions
 
 ```bash
-$ :binary completion > /path/to/completions/...
+$ tool completion > /path/to/completions/...
 # or
-$ source <(:binary completion)
+$ source <(tool completion)
 ```
 
 ## 🤲 Outcomes
@@ -69,17 +69,17 @@ $ source <(:binary completion)
 <p align="right">made with ❤️ for everyone</p>
 
 [awesome.icon]:     https://awesome.re/mentioned-badge.svg
-[build.page]:       https://github.com/:owner/:repository/actions/workflows/ci.yml
+[build.page]:       https://github.com/octomation/go-tool/actions/workflows/ci.yml
 [build.icon]:       https://github.com/octomation/go-tool/actions/workflows/ci.yml/badge.svg
-[coverage.page]:    https://codeclimate.com/github/:owner/:repository/test_coverage
+[coverage.page]:    https://codeclimate.com/github/octomation/go-tool/test_coverage
 [coverage.icon]:    https://api.codeclimate.com/v1/badges/8491ba0aada439d2df0c/test_coverage
-[design.page]:      https://www.notion.so/33715348cc114ea79dd350a25d16e0b0?r=0b753cbf767346f5a6fd51194829a2f3
-[docs.page]:        https://pkg.go.dev/:module/:version
+[design.page]:      https://www.notion.so/33715348cc114ea79dd350a25d16e0b0
+[docs.page]:        https://pkg.go.dev/go.octolab.org
 [docs.icon]:        https://img.shields.io/badge/docs-pkg.go.dev-blue
 [mirror.page]:      https://bitbucket.org/kamilsk/go-tool
 [mirror.icon]:      https://img.shields.io/badge/mirror-bitbucket-blue
-[promo.page]:       https://github.com/:owner/:repository
-[quality.page]:     https://goreportcard.com/report/:module
+[promo.page]:       https://github.com/octomation/go-tool
+[quality.page]:     https://goreportcard.com/report/go.octolab.org
 [quality.icon]:     https://goreportcard.com/badge/go.octolab.org
 [template.page]:    https://github.com/octomation/go-tool
 [template.icon]:    https://img.shields.io/badge/template-go--tool-blue
