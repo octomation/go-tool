@@ -8,9 +8,8 @@ import (
 
 // Stdout returns a demo cobra.Command to write to the stdout.
 //
-// 	$ go run main.go stdout [message]
-// 	$ go run main.go stdout [message] >/dev/null
-//
+//	$ go run main.go stdout [message]
+//	$ go run main.go stdout [message] >/dev/null
 func Stdout() *cobra.Command {
 	command := cobra.Command{
 		Use: "stdout",

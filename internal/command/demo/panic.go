@@ -8,8 +8,7 @@ import (
 
 // Panic returns a demo cobra.Command to raise a panic.
 //
-// 	$ go run main.go panic [message]
-//
+//	$ go run main.go panic [message]
 func Panic() *cobra.Command {
 	command := cobra.Command{
 		Use: "panic",

@@ -8,10 +8,9 @@ import (
 
 // Stderr returns a demo cobra.Command to write to the stderr.
 //
-// 	$ go run main.go stderr [message]
-// 	$ go run main.go stderr [message] >/dev/null
-// 	$ go run main.go stderr [message] 2>/dev/null
-//
+//	$ go run main.go stderr [message]
+//	$ go run main.go stderr [message] >/dev/null
+//	$ go run main.go stderr [message] 2>/dev/null
 func Stderr() *cobra.Command {
 	command := cobra.Command{
 		Use: "stderr",
