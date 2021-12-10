@@ -1,0 +1,23 @@
+{
+  "name": "docs",
+  "description": "Tool documentation.",
+  "homepage": "https://github.com/octomation/go-tool#readme",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Kamil Samigullin",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/octomation/go-tool.git"
+  },
+  "bugs": {
+    "url": "https://github.com/octomation/go-tool/issues"
+  },
+  "scripts": {
+    "test": "exit 1"
+  },
+  "dependencies": {
+    "@mdx-js/esbuild": "^2.0.0",
+    "@mdx-js/mdx": "^2.0.0",
+    "@mdx-js/react": "^2.0.0"
+  }
+}
