@@ -1,6 +1,6 @@
-> # 🧩 Tool
+> # 🧩 Go tool
 >
-> Template for typical Go tool.
+> Template for typical tool written on Go.
 
 [![Build][build.icon]][build.page]
 [![Documentation][docs.icon]][docs.page]
@@ -36,9 +36,9 @@ $ brew install octolab/tap/tool
 ### Binary
 
 ```bash
-$ curl -fsSL https://raw.githubusercontent.com/octomation/go-tool/main/bin/install | sh
+$ curl -fsSL https://install.octolab.org/octomation/tool | sh
 # or
-$ wget -qO-  https://raw.githubusercontent.com/octomation/go-tool/main/bin/install | sh
+$ wget -qO-  https://install.octolab.org/octomation/tool | sh
 ```
 
 > Don't forget about [security](https://www.idontplaydarts.com/2016/04/detecting-curl-pipe-bash-server-side/).
@@ -47,12 +47,12 @@ $ wget -qO-  https://raw.githubusercontent.com/octomation/go-tool/main/bin/insta
 
 ```bash
 # use standard go tools
-$ go get github.com/octomation/go-tool@latest
+$ go get go.octolab.org/template/tool@latest
 # or use egg tool
-$ egg tools add github.com/octomation/go-tool@latest
+$ egg tools add go.octolab.org/template/tool@latest
 ```
 
-> [egg][] is an `extended go get`.
+> [egg][] is the `extended go get`.
 
 ### Shell completions
 
@@ -74,13 +74,13 @@ $ source <(tool completion)
 [coverage.page]:    https://codeclimate.com/github/octomation/go-tool/test_coverage
 [coverage.icon]:    https://api.codeclimate.com/v1/badges/8491ba0aada439d2df0c/test_coverage
 [design.page]:      https://www.notion.so/33715348cc114ea79dd350a25d16e0b0
-[docs.page]:        https://pkg.go.dev/go.octolab.org
+[docs.page]:        https://pkg.go.dev/go.octolab.org/template/tool
 [docs.icon]:        https://img.shields.io/badge/docs-pkg.go.dev-blue
 [mirror.page]:      https://bitbucket.org/kamilsk/go-tool
 [mirror.icon]:      https://img.shields.io/badge/mirror-bitbucket-blue
 [promo.page]:       https://github.com/octomation/go-tool
-[quality.page]:     https://goreportcard.com/report/go.octolab.org
-[quality.icon]:     https://goreportcard.com/badge/go.octolab.org
+[quality.page]:     https://goreportcard.com/report/go.octolab.org/template/tool
+[quality.icon]:     https://goreportcard.com/badge/go.octolab.org/template/tool
 [template.page]:    https://github.com/octomation/go-tool
 [template.icon]:    https://img.shields.io/badge/template-go--tool-blue
 
