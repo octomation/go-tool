@@ -213,7 +213,7 @@ test-with-coverage-report: test-with-coverage
 	$(AT) go tool cover -html c.out
 .PHONY: test-with-coverage-report
 
-test-integration: GOTAGS = integration
+test-integration: GOTAGS = $(GOTAGS) integration
 test-integration:
 	$(AT) $(GOTEST) \
 		-cover \
@@ -222,12 +222,12 @@ test-integration:
 		-race \
 		-tags $(GOTAGS) \
 		$(GOTESTFLAGS) \
-		./...
+		$(PACKAGES)
 .PHONY: test-integration
 
-test-integration-quick: GOTAGS = integration
+test-integration-quick: GOTAGS = $(GOTAGS) integration
 test-integration-quick:
-	$(AT) $(GOTEST) -tags $(GOTAGS) $(GOTESTFLAGS) ./...
+	$(AT) $(GOTEST) -tags $(GOTAGS) $(GOTESTFLAGS) $(PACKAGES)
 .PHONY: test-integration-quick
 
 test-integration-report: test-integration
