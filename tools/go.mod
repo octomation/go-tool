@@ -1,4 +1,4 @@
-module go.octolab.org/template/tool/tools
+module tools
 
 go 1.20
 
