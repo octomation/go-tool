@@ -1,31 +1,56 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 [ "${BASH_VERSINFO:-0}" -ge 4 ] || {
   echo "bash version 4 or higher is required" >&2
   exit 1
 }
 
-set -euo pipefail
-
-function linters() {
-  curl -s https://golangci-lint.run/usage/linters/ |
-    pup ':parent-of(#enabled-by-default)' |
-    pup 'table td a:first-child json{}' |
-    jq -r '.[] | (.text + " " + .href)' |
-    column -t
-}
-
 declare -A config
 config['dryrun']=false
 
-_() {
-  if ${config['dryrun']}; then
-    echo "${@}"
-    return
+function docs() {
+  pushd tools
+  trap popd EXIT
+
+  local args=("${@}")
+  if [ ${#args[@]} = 0 ]; then
+    args=(install build start)
   fi
-  trap 'echo "${@}"' ERR
-  "${@}"
+
+  for arg in "${args[@]}"; do
+    case "${arg}" in
+    install)
+      local lock file=package-lock.json
+      lock=$(dirname "${file}")/node_modules/checksum.lock
+      if [ ! -f "${lock}" ] || [ "$(cat "${lock}")" != "$(md5sum "${file}")" ]; then
+        npm ci
+        md5sum "${file}" >"${lock}"
+      fi
+      ;;
+
+    build)
+      npx --no-install next build
+      ;;
+
+    start)
+      npx --no-install next start
+      ;;
+
+    publish)
+      rm -rf ../docs/*
+      TARGET=static npx --no-install next build
+      git checkout ../docs/CNAME
+      ;;
+
+    *) break ;;
+    esac
+  done
 }
+
+help() { @usage; }
+
 @debug() { echo "${@}"; }
 @trace() { @debug "${@}" && "${@}"; }
 @error() { echo "${@}" >&2; }
@@ -35,14 +60,51 @@ _() {
 Usage: $0 <task> <args>
 Tasks:
 EOF
-  compgen -A function | grep -Ev '^(@|_)' | sort | cat -n
+  compgen -A function | grep -Ev '^(@|_|-|\+)' | sort | cat -n
+}
+
+@() {
+  ${config['dryrun']} && echo "${@}"
+  "${@}"
+}
+
+_() {
+  if ${config['dryrun']}; then
+    echo "${@}"
+    return
+  fi
+  trap 'echo "${@}"' ERR
+  "${@}"
+}
+
+-() {
+  if ${config['dryrun']}; then
+    echo "${*} || false"
+    return
+  fi
+  trap 'echo "${*} || false"' ERR
+  "${@}" || false
+}
+
++() {
+  if ${config['dryrun']}; then
+    echo "${*} || true"
+    return
+  fi
+  trap 'echo "${*} || true"' ERR
+  "${@}" || true
 }
 
 function @main() {
-  if [[ "${1:-}" =~ ^--dry-run|-d$ ]]; then
-    config['dryrun']=true
-    shift
-  fi
+  for arg in "${@}"; do
+    case "${arg}" in
+    -d | --dry-run)
+      config['dryrun']=true
+      shift
+      ;;
+    *) break ;;
+    esac
+  done
   "${@:-@usage}"
 }
 
