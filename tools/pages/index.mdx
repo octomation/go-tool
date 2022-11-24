@@ -1,6 +1,6 @@
-🧩 Go tool
+# 🧩 Tool
 
-Template for typical tool written on Go.
+Template for a typical CLI tool written on Go.
 
 [![Build][build.icon]][build.page]
 [![Documentation][docs.icon]][docs.page]

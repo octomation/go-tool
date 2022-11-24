@@ -1,15 +1,101 @@
-name: documenting
+name: Documentation delivery
 
 on:
   workflow_dispatch:
+    inputs:
+      reason:
+        type: string
+        default: manual healthcheck
+        required: true
+
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/docs.yml'
+      - 'docs/**/*'
+      - 'tools/pages/**/*'
+      - 'tools/*.jsx?'
+      - 'tools/package*.json'
+    tags: [ '!*' ]
+
+  schedule:
+    - name: At 07:00 on day-of-month 1, UTC
+      cron: 0 7 1 * *
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  compile:
+  build:
+    name: Building
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-        # see
-        # - https://github.com/actions/checkout/issues/719
-        # - https://github.com/golangci/golangci-lint-action/pull/471#issuecomment-1127537719
-        with: { fetch-depth: 0, ref: '${{ github.event.pull_request.head.ref }}' }
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with: { fetch-depth: 0 }
+      - name: Set up Node.js environment
+        uses: actions/setup-node@v3
+        with: { node-version: 16 }
+      - name: Set up GitHub Pages
+        uses: actions/configure-pages@v3
+
+      - name: Cache tooling dependencies
+        id: tools
+        uses: actions/cache@v3
+        with:
+          path: ./tools/node_modules
+          key: tools-${{ hashFiles('tools/package-lock.json') }}
+      - name: Install tooling dependencies if needed
+        run: ./Taskfile docs install
+        if: steps.tools.outputs.cache-hit != 'true'
+
+      - name: Build static HTML with Next.js
+        run: ./Taskfile docs build publish
+      - name: Upload the documentation
+        uses: actions/upload-pages-artifact@v1
+        with: { path: docs }
+
+  deploy:
+    name: Deploying
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+      id-token: write
+      pages: write
+
+    steps:
+      - name: Deploy it to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+
+  notify:
+    name: Notifying
+    needs: [ deploy ]
+    runs-on: ubuntu-latest
+    if: failure() || success()
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with: { fetch-depth: 0 }
+      - name: Define notification message
+        id: message
+        uses: ./.github/actions/notify
+
+      - name: Send Slack notification
+        uses: rtCamp/action-slack-notify@v2
+        continue-on-error: true
+        env:
+          SLACK_COLOR: ${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}
+          SLACK_FOOTER: made with ❤️ for everyone, OctoLab
+          SLACK_ICON: https://github.com/github.png?size=64
+          SLACK_MESSAGE: ${{ steps.message.outputs.txt }}
+          SLACK_TITLE: '📚 ${{ github.repository }}: ${{ github.workflow }}'
+          SLACK_USERNAME: GitHub Actions
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
