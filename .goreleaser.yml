@@ -1,8 +1,7 @@
----
-project_name: %template%
+project_name: tool #find-and-replace:template
 
 archives:
-  - id: %template%
+  - id: tool #find-and-replace:template
     files:
       - LICENSE
     format: tar.gz
@@ -10,36 +9,36 @@ archives:
     rlcp: true
 
 brews:
-  - name: %template%
-    caveats: %template%
+  - name: tool #find-and-replace:template
+    caveats: An example of the goreleaser usage.
     commit_author:
       name: Kamil Samigullin
       email: kamil@samigullin.info
-    description: %template%
+    description: Template for a typical CLI-tool written on Go.
     folder: Formula
-    homepage: %template%
+    homepage: https://go-tool.octolab.org/
     tap:
-      owner: %template%
-      name: %template%
+      owner: octolab
+      name: homebrew-tap
     install: |
-      bin.install "%template%"
+      bin.install "tool" #find-and-replace:template
 
-      output = Utils.popen_read("#{bin}/%template% completion bash")
-      (bash_completion/"%template%").write output
+      output = Utils.popen_read("#{bin}/tool completion bash")
+      (bash_completion/"tool").write output
 
-      output = Utils.popen_read("#{bin}/%template% completion fish")
-      (fish_completion/"%template%.fish").write output
+      output = Utils.popen_read("#{bin}/tool completion fish")
+      (fish_completion/"tool.fish").write output
 
-      output = Utils.popen_read("#{bin}/%template% completion zsh")
-      (zsh_completion/"_%template%").write output
+      output = Utils.popen_read("#{bin}/tool completion zsh")
+      (zsh_completion/"_tool").write output
 
       prefix.install_metafiles
     test: |
-      system "#{bin}/%template% version"
+      system "#{bin}/tool version"
 
 builds:
-  - id: %template%
-    binary: %template%
+  - id: tool #find-and-replace:template
+    binary: tool
     env:
       - CGO_ENABLED=0
     flags:
@@ -58,5 +57,5 @@ checksum: { name_template: checksums.txt }
 
 release:
   github:
-    owner: %template%
-    name: %template%
+    owner: octomation
+    name: go-tool #find-and-replace:template
