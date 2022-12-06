@@ -301,8 +301,12 @@ go-install-clean:
 .PHONY: go-install-clean
 
 go-dist-check:
-	$(AT) goreleaser --snapshot --skip-publish --rm-dist
+	$(AT) goreleaser --clean --skip-publish --snapshot
 .PHONY: go-dist-check
+
+go-dist-clean:
+	$(AT) rm -rf dist
+.PHONY: go-dist-clean
 
 go-dist-installer:
 	$(AT) godownloader .goreleaser.yml >bin/install
@@ -411,7 +415,7 @@ export PATH := $(GOBIN):$(PATH)
 setup: git-config git-hooks go-deps-fetch go-tools-install
 .PHONY: setup
 
-clean: go-deps-clean go-install-clean go-test-clean go-fuzzing-test-clean
+clean: go-deps-clean go-dist-clean go-install-clean go-test-clean go-fuzzing-test-clean
 .PHONY: clean
 
 drop: clean git-clean git-rmdir
@@ -460,7 +464,7 @@ fast-check: go-check go-deps-check go-tools-check
 fast-check: go-deps-tidy go-tools-tidy go-generate git-check
 .PHONY: fast-check
 
-full-check: fast-check check
+full-check: fast-check go-dist-check check
 .PHONY: full-check
 
 full-test: go-test go-fuzzing-test go-integration-test go-performance-test
