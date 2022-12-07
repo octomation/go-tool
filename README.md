@@ -16,7 +16,7 @@ Template for a typical CLI-tool written on Go.
 ## 🛫 Quick start
 
 <details>
-  <summary>Work with <strong>Makefile</strong></summary>
+  <summary>Work with Makefile</summary>
 
 ```bash
 $ make setup
@@ -28,9 +28,8 @@ $ TIMEOUT=5s make test-with-coverage
 ```
 
 </details>
-
 <details>
-  <summary>Work with <strong>Taskfile</strong></summary>
+  <summary>Work with Taskfile</summary>
 
 ```bash
 $ alias run=./Taskfile
@@ -41,9 +40,8 @@ $ run docs install build start
 ```
 
 </details>
-
 <details>
-  <summary>Work with <strong>Tools</strong></summary>
+  <summary>Work with Tools</summary>
 
 ```bash
 $ make tools
@@ -54,9 +52,8 @@ $ make go-fmt # goimports -local $(go list -m) -w ./...
 ```
 
 </details>
-
 <details>
-  <summary>Work with <strong>Docker</strong></summary>
+  <summary>Work with Docker</summary>
 
 ```bash
 $ make go-1.11 # or go-1.12, etc.
