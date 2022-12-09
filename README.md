@@ -190,9 +190,44 @@ $ tool completion > /path/to/completions/...
 $ source <(tool completion)
 ```
 
-## 🤲 Outcomes
+## 🤲 Outputs & outcomes
 
-...
+<details>
+  <summary>OctoLab</summary>
+
+- https://github.com/octolab/breakit
+- https://github.com/octolab/genome*
+- https://github.com/octolab/parallel*
+- https://github.com/octolab/testit
+- https://github.com/octolab/try*
+
+</details>
+<details>
+  <summary>Octomation</summary>
+
+- https://github.com/octomation/maintainer
+
+</details>
+<details>
+  <summary>Tact.app</summary>
+
+- https://github.com/tact-app/airseat
+- https://github.com/tact-app/fiddle
+- https://github.com/tact-app/loop
+- https://github.com/tact-app/secret
+
+</details>
+<details>
+  <summary>Others</summary>
+
+- https://github.com/kamilsk/bridge
+- https://github.com/kamilsk/check*
+- https://github.com/kamilsk/egg*
+- https://github.com/kamilsk/forward*
+- https://github.com/kamilsk/grafaman
+- https://github.com/kamilsk/lift*
+
+</details>
 
 <p align="right">made with ❤️ for everyone by OctoLab</p>
 
