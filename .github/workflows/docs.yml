@@ -13,9 +13,6 @@ on:
     paths:
       - '.github/workflows/docs.yml'
       - 'docs/**/*'
-      - 'tools/pages/**/*'
-      - 'tools/*.jsx?'
-      - 'tools/package*.json'
     tags: [ '!*' ]
 
   schedule:
@@ -41,21 +38,21 @@ jobs:
       - name: Set up GitHub Pages
         uses: actions/configure-pages@v3
 
-      - name: Cache tooling dependencies
-        id: tools
+      - name: Cache documentation dependencies
+        id: docs
         uses: actions/cache@v3
         with:
-          path: ./tools/node_modules
-          key: tools-${{ hashFiles('tools/package-lock.json') }}
-      - name: Install tooling dependencies if needed
+          path: ./docs/node_modules
+          key: docs-${{ hashFiles('docs/package-lock.json') }}
+      - name: Install documentation dependencies if needed
         run: ./Taskfile docs install
-        if: steps.tools.outputs.cache-hit != 'true'
+        if: steps.docs.outputs.cache-hit != 'true'
 
       - name: Build static HTML with Next.js
-        run: ./Taskfile docs build publish
+        run: ./Taskfile docs publish
       - name: Upload the documentation
         uses: actions/upload-pages-artifact@v1
-        with: { path: docs }
+        with: { path: docs/dist }
 
   deploy:
     name: Deploying
