@@ -125,8 +125,9 @@ or if you find an issue, [report it][action.issue] first.
 4. Go tools:
    - [mockgen](https://github.com/golang/mock),
    - [golangci-lint](https://github.com/kamilsk/golangci-lint),
+   - [godownloader](https://github.com/kamilsk/godownloader),
+   - [goreleaser](https://github.com/goreleaser/goreleaser),
    - [goimports](https://github.com/kamilsk/go-tools),
-   - [goreleaser](https://goreleaser.com),
    - [govulncheck](https://github.com/golang/vuln).
 
 ### Optional
