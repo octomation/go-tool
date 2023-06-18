@@ -1,17 +1,16 @@
-![Go Tool][social.image]
+[![Go Tool][social.preview]][preview.config]
+
+[![Coverage][coverage.icon]][coverage.page]
+[![Quality][quality.icon]][quality.page]
+[![Documentation][docs.icon]][docs.page]
+[![CI/CD][build.icon]][build.page]
+[![Promo][site.icon]][site.page]
+[![Mirror][mirror.icon]][mirror.page]
+[![Template][template.icon]][template.page]
 
 # 🧩 Tool
 
 Template for a typical CLI-tool written on Go.
-
-[![Build][build.icon]][build.page]
-[![Coverage][coverage.icon]][coverage.page]
-[![Quality][quality.icon]][quality.page]
-[![Documentation][docs.icon]][docs.page]
-
-[![Promo][site.icon]][site.page]
-[![Mirror][mirror.icon]][mirror.page]
-[![Template][template.icon]][template.page]
 
 ## 🛫 Quick start
 
@@ -35,8 +34,13 @@ $ TIMEOUT=5s make test-with-coverage
 $ alias run=./Taskfile
 $ run help
 
-$ run docs
-$ run docs install build start
+$ run docs # === `run docs install -- build -- start`
+$ run docs npm ci
+$ run docs npm i nextra@latest
+
+$ run tools go generate tools.go
+$ run tools golangci-lint --version -- mockgen --version
+$ run which goimports golangci-lint govulncheck mockgen
 ```
 
 </details>
@@ -48,7 +52,7 @@ $ make tools
 $ source bin/activate
 
 $ which goimports
-$ make go-fmt # goimports -local $(go list -m) -w ./...
+$ goimports -local $(go list -m) -w ./...
 ```
 
 </details>
@@ -86,14 +90,7 @@ rather than wasting time on environment configuration and copying boilerplate co
 
 1. [Generate][action.generate] a new repository from the template.
 2. Clone the repository locally.
-3. Update files:
-   - `docs/CNAME`, `tools/pages/*`, `tools/*.jsx?`,
-   - `go.mod`, and `README.md`:
-      - [ ] 🛫 Quick start
-      - [ ] 💡 Idea
-      - [ ] 🏆 Motivation
-      - [ ] 🤼‍ How to
-      - [ ] 🛬 Integration
+3. Update the desired files as needed.
 4. Write your code and tests.
 5. 🚀
 
@@ -122,23 +119,29 @@ or if you find an issue, [report it][action.issue] first.
 1. [Nextra](https://nextra.site).
 2. [Makefiles](https://github.com/octomation/makefiles).
 3. [Taskfiles](https://github.com/octomation/taskfiles).
-4. Go tools:
-   - [mockgen](https://github.com/golang/mock),
-   - [golangci-lint](https://github.com/kamilsk/golangci-lint),
-   - [godownloader](https://github.com/kamilsk/godownloader),
-   - [goreleaser](https://github.com/goreleaser/goreleaser),
-   - [goimports](https://github.com/kamilsk/go-tools),
-   - [govulncheck](https://github.com/golang/vuln).
+4. [Go tools][egg]: [mockgen][], [golangci-lint][], [godownloader][],
+   [goreleaser][], [goimports][], [govulncheck][].
+
+[mockgen]:          https://github.com/golang/mock
+[govulncheck]:      https://github.com/golang/vuln
+[goreleaser]:       https://github.com/goreleaser/goreleaser
+[egg]:              https://github.com/kamilsk/egg
+[goimports]:        https://github.com/kamilsk/go-tools
+[godownloader]:     https://github.com/kamilsk/godownloader
+[golangci-lint]:    https://github.com/kamilsk/golangci-lint
 
 ### Optional
 
-1. [Bitbucket](https://bitbucket.org).
+1. [Bitbucket](https://bitbucket.org)[^1].
 2. [Codecov](https://about.codecov.io).
 3. [Slack](https://github.com/marketplace/slack-github).
 4. [Settings](https://github.com/apps/settings).
-5. [GitHub Socialify](https://socialify.git.ci).
-6. [Go Report Card](https://goreportcard.com).
-7. [Shields.io](https://shields.io).
+5. [Go Report Card](https://goreportcard.com).
+6. [Shields.io](https://shields.io).
+7. [GitHub Socialify](https://socialify.git.ci).
+
+[^1]: An alternative for backup could be [GitLab](https://about.gitlab.com),
+[Gogs](https://gogs.io), or [Gitea](https://gitea.io).
 
 ### Coming soon
 
@@ -149,12 +152,7 @@ or if you find an issue, [report it][action.issue] first.
 5. [Vanity URL](https://github.com/octomation/vanity) (canonical import path).
 6. [Vercel](https://vercel.com) (docs preview).
 
-### Miscellaneous
-
-1. [Crontab.guru](https://crontab.guru).
-2. [Git History](https://githistory.xyz).
-
-## 🧩 Installation
+## 🛬 Installation
 
 ### Homebrew
 
@@ -181,8 +179,6 @@ $ go get go.octolab.org/template/tool@latest
 $ egg tools add go.octolab.org/template/tool@latest
 ```
 
-> [egg][] is the `extended go get`.
-
 ### Shell completions
 
 ```bash
@@ -191,72 +187,80 @@ $ tool completion > /path/to/completions/...
 $ source <(tool completion)
 ```
 
-## 🤲 Outputs & outcomes
+## 🏗️ Ecosystem
 
-<details>
-  <summary>OctoLab</summary>
+### Input
 
+- https://github.com/kamilsk/check
+- https://github.com/kamilsk/egg
+- https://github.com/kamilsk/forward
+- https://github.com/kamilsk/lift
+- https://github.com/octomation/go-module
+
+### Impact
+
+- https://github.com/octomation/maintainer
+- https://github.com/octomation/install
+- https://github.com/octomation/makefiles
+- https://github.com/octomation/taskfiles
+- https://github.com/octomation/vanity
+
+#### Actions
+
+<sub>🚧 Work in progress.</sub>
+
+- https://github.com/octomation/goimports-action
+- https://github.com/octomation/settings-action
+
+#### Custom forks
+
+- https://github.com/kamilsk/go-tools
+- https://github.com/kamilsk/godownloader
+- https://github.com/kamilsk/golangci-lint
+
+### Output
+
+- https://github.com/kamilsk/bridge
+- https://github.com/kamilsk/grafaman
 - https://github.com/octolab/breakit
 - https://github.com/octolab/genome*
 - https://github.com/octolab/parallel*
 - https://github.com/octolab/testit
 - https://github.com/octolab/try*
-
-</details>
-<details>
-  <summary>Octomation</summary>
-
-- https://github.com/octomation/maintainer
-
-</details>
-<details>
-  <summary>Tact.app</summary>
-
+- https://github.com/octomation/dotapps
 - https://github.com/tact-app/airseat
 - https://github.com/tact-app/fiddle
 - https://github.com/tact-app/loop
 - https://github.com/tact-app/secret
 
-</details>
-<details>
-  <summary>Others</summary>
-
-- https://github.com/kamilsk/bridge
-- https://github.com/kamilsk/check*
-- https://github.com/kamilsk/egg*
-- https://github.com/kamilsk/forward*
-- https://github.com/kamilsk/grafaman
-- https://github.com/kamilsk/lift*
-
-</details>
-
 <p align="right">made with ❤️ for everyone by OctoLab</p>
 
-[social.image]:      https://socialify.git.ci/octomation/go-tool/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
-[awesome.icon]:      https://awesome.re/mentioned-badge.svg
-[awesome.page]:      https://awesome-go.com/project-layout/
-[build.icon]:        https://github.com/octomation/go-tool/actions/workflows/ci.yml/badge.svg
-[build.page]:        https://github.com/octomation/go-tool/actions/workflows/ci.yml
-[coverage.icon]:     https://codecov.io/gh/octomation/go-tool/branch/main/graph/badge.svg
-[coverage.page]:     https://codecov.io/gh/octomation/go-tool
-[quality.icon]:      https://goreportcard.com/badge/go.octolab.org/template/tool
-[quality.page]:      https://goreportcard.com/report/go.octolab.org/template/tool
-[docs.icon]:         https://pkg.go.dev/badge/go.octolab.org/template/tool.svg
-[docs.page]:         https://pkg.go.dev/go.octolab.org/template/tool
-[site.icon]:         https://img.shields.io/badge/site-GitHub%20Pages-brightgreen
-[site.page]:         https://go-tool.octolab.org
-[mirror.icon]:       https://img.shields.io/badge/mirror-Bitbucket-blue
-[mirror.page]:       https://bitbucket.org/kamilsk/go-tool
-[template.icon]:     https://img.shields.io/badge/template-go--tool-blue
-[template.page]:     https://github.com/octomation/go-tool
+[social.preview]:   https://socialify.git.ci/octomation/go-tool/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
+[preview.config]:   https://socialify.git.ci/octomation/go-tool?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
+[preview.fallback]: https://repository-images.githubusercontent.com/229588315/69838fe7-9cde-4854-8c20-ada5892d6ea9
 
-[action.discuss]:    https://github.com/octomation/go-tool/discussions/new/choose
-[action.fork]:       https://github.com/octomation/go-tool/fork
-[action.generate]:   https://github.com/octomation/go-tool/generate
-[action.issue]:      https://github.com/octomation/go-tool/issues/new/choose
-[docs.contrib]:      https://github.com/octomation/.github/blob/main/.github/CONTRIBUTING.md
-[octolab.site]:      https://github.com/octolab
-[wiki.compat]:       https://en.wikipedia.org/wiki/Backward_compatibility
-[wiki.gomod]:        https://github.com/golang/go/wiki/Modules
+[awesome.icon]:     https://awesome.re/mentioned-badge.svg
+[awesome.page]:     https://awesome-go.com/project-layout/
+[coverage.icon]:    https://codecov.io/gh/octomation/go-tool/branch/main/graph/badge.svg
+[coverage.page]:    https://codecov.io/gh/octomation/go-tool
+[quality.icon]:     https://goreportcard.com/badge/go.octolab.org/template/tool
+[quality.page]:     https://goreportcard.com/report/go.octolab.org/template/tool
+[docs.icon]:        https://pkg.go.dev/badge/go.octolab.org/template/tool.svg
+[docs.page]:        https://pkg.go.dev/go.octolab.org/template/tool
+[build.icon]:       https://img.shields.io/badge/ci%2Fcd-GitHub%20Actions-brightgreen
+[build.page]:       https://github.com/octomation/go-tool/actions
+[site.icon]:        https://img.shields.io/badge/site-GitHub%20Pages-brightgreen
+[site.page]:        https://go-tool.octolab.org
+[mirror.icon]:      https://img.shields.io/badge/mirror-Bitbucket-blue
+[mirror.page]:      https://bitbucket.org/kamilsk/go-tool
+[template.icon]:    https://img.shields.io/badge/template-go--tool-blue
+[template.page]:    https://github.com/octomation/go-tool
 
-[egg]:               https://github.com/kamilsk/egg
+[action.discuss]:   https://github.com/octomation/go-tool/discussions/new/choose
+[action.fork]:      https://github.com/octomation/go-tool/fork
+[action.generate]:  https://github.com/octomation/go-tool/generate
+[action.issue]:     https://github.com/octomation/go-tool/issues/new/choose
+[docs.contrib]:     https://github.com/octomation/.github/blob/main/.github/CONTRIBUTING.md
+[octolab.site]:     https://github.com/octolab
+[wiki.compat]:      https://en.wikipedia.org/wiki/Backward_compatibility
+[wiki.gomod]:       https://github.com/golang/go/wiki/Modules
