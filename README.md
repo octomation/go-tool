@@ -60,9 +60,9 @@ $ goimports -local $(go list -m) -w ./...
   <summary>Work with Docker</summary>
 
 ```bash
-$ make go-1.11 # or go-1.12, etc.
+$ make go-1.19 # or go-1.20, etc.
 /src# make go-env 2>/dev/null | grep GOVERSION
-# GOVERSION:   1.11.13
+# GOVERSION:   1.19.10
 /src# make test
 ```
 
@@ -86,7 +86,7 @@ rather than wasting time on environment configuration and copying boilerplate co
 
 ## 🤼‍ How to
 
-### Build your own module
+### Build your own tool
 
 1. [Generate][action.generate] a new repository from the template.
 2. Clone the repository locally.
