@@ -32,6 +32,7 @@ $ TIMEOUT=5s make test-with-coverage
 
 ```bash
 $ alias run=./Taskfile
+$ run refresh
 $ run help
 
 $ run docs # === `run docs install -- build -- start`
@@ -60,9 +61,9 @@ $ goimports -local $(go list -m) -w ./...
   <summary>Work with Docker</summary>
 
 ```bash
-$ make go-1.11 # or go-1.12, etc.
+$ make go-1.19 # or go-1.20, etc.
 /src# make go-env 2>/dev/null | grep GOVERSION
-# GOVERSION:   1.11.13
+# GOVERSION:   1.19.10
 /src# make test
 ```
 
@@ -135,13 +136,16 @@ or if you find an issue, [report it][action.issue] first.
 1. [Bitbucket](https://bitbucket.org)[^1].
 2. [Codecov](https://about.codecov.io).
 3. [Slack](https://github.com/marketplace/slack-github).
-4. [Settings](https://github.com/apps/settings).
+4. [Settings](https://github.com/apps/settings)[^2].
 5. [Go Report Card](https://goreportcard.com).
 6. [Shields.io](https://shields.io).
 7. [GitHub Socialify](https://socialify.git.ci).
 
 [^1]: An alternative for backup could be [GitLab](https://about.gitlab.com),
 [Gogs](https://gogs.io), or [Gitea](https://gitea.io).
+
+[^2]: It has been deprecated and will be replaced someday by
+[GitHub Actions](https://github.com/octomation/go-module/issues/56).
 
 ### Coming soon
 
@@ -167,8 +171,6 @@ $ curl -fsSL https://install.octolab.org/octomation/tool | sh
 # or
 $ wget -qO-  https://install.octolab.org/octomation/tool | sh
 ```
-
-> Don't forget about [security](https://www.idontplaydarts.com/2016/04/detecting-curl-pipe-bash-server-side/).
 
 ### Source
 
@@ -262,5 +264,3 @@ $ source <(tool completion)
 [action.issue]:     https://github.com/octomation/go-tool/issues/new/choose
 [docs.contrib]:     https://github.com/octomation/.github/blob/main/.github/CONTRIBUTING.md
 [octolab.site]:     https://github.com/octolab
-[wiki.compat]:      https://en.wikipedia.org/wiki/Backward_compatibility
-[wiki.gomod]:       https://github.com/golang/go/wiki/Modules
