@@ -8,7 +8,7 @@ require (
 	github.com/goreleaser/godownloader v0.1.0
 	github.com/goreleaser/goreleaser v1.19.2
 	golang.org/x/tools v0.10.0
-	golang.org/x/vuln v0.2.0
+	golang.org/x/vuln v1.0.0
 )
 
 replace (
