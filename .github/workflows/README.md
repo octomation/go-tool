@@ -19,7 +19,7 @@ Read more about caches https://docs.github.com/en/actions/using-workflows/cachin
 
 [![Status][cd.icon]][cd.page]
 
-Delivery binaries using [GoReleaser](https://goreleaser.com).
+Delivery binaries using [GoReleaser](https://goreleaser.com/).
 
 
 ## [Continuous integration](ci.yml)
@@ -74,11 +74,11 @@ Checks for stale issues and pull requests.
 
 Checks tools for consistency.
 
-<p align="right">made with ❤️ for everyone by OctoLab</p>
+<p align="right">made with ❤️ for everyone by <a href="https://www.octolab.org/">OctoLab</a></p>
 
-[social.preview]:   https://socialify.git.ci/octomation/go-tool/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
+[social.preview]:   https://cdn.octolab.org/repo/go-tool.png
 [preview.config]:   https://socialify.git.ci/octomation/go-tool?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
-[preview.fallback]: https://repository-images.githubusercontent.com/229588315/69838fe7-9cde-4854-8c20-ada5892d6ea9
+[preview.fallback]: https://socialify.git.ci/octomation/go-tool/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
 
 [caches.icon]:      https://github.com/octomation/go-tool/actions/workflows/caches.yml/badge.svg
 [caches.page]:      https://github.com/octomation/go-tool/actions/workflows/caches.yml

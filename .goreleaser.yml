@@ -1,15 +1,14 @@
-project_name: tool #find-and-replace:template
+project_name: tool
 
 archives:
-  - id: tool #find-and-replace:template
+  - id: tool
     files:
       - LICENSE
     format: tar.gz
-    name_template: "{{.Binary}}_{{.Version}}_{{.Os}}-{{.Arch}}"
-    rlcp: true
+    name_template: "{{.ProjectName}}_{{.Version}}_{{.Os}}-{{.Arch}}"
 
 brews:
-  - name: tool #find-and-replace:template
+  - name: tool
     caveats: An example of the goreleaser usage.
     commit_author:
       name: Kamil Samigullin
@@ -17,11 +16,11 @@ brews:
     description: Template for a typical CLI-tool written on Go.
     folder: Formula
     homepage: https://go-tool.octolab.org/
-    tap:
+    repository:
       owner: octolab
       name: homebrew-tap
     install: |
-      bin.install "tool" #find-and-replace:template
+      bin.install "tool"
 
       output = Utils.popen_read("#{bin}/tool completion bash")
       (bash_completion/"tool").write output
@@ -37,7 +36,7 @@ brews:
       system "#{bin}/tool version"
 
 builds:
-  - id: tool #find-and-replace:template
+  - id: tool
     binary: tool
     env:
       - CGO_ENABLED=0
@@ -58,4 +57,4 @@ checksum: { name_template: checksums.txt }
 release:
   github:
     owner: octomation
-    name: go-tool #find-and-replace:template
+    name: go-tool
