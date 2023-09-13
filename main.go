@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"os"
-	"runtime/debug"
 
 	"github.com/fatih/color"
 	"go.octolab.org/errors"
@@ -26,13 +25,6 @@ var (
 	stderr  = color.Error
 	stdout  = color.Output
 )
-
-func init() {
-	if info, available := debug.ReadBuildInfo(); available && commit == unknown {
-		version = info.Main.Version
-		commit = fmt.Sprintf("%s, mod sum: %s", commit, info.Main.Sum)
-	}
-}
 
 func main() {
 	ctx, cancel := context.WithCancel(context.Background())
