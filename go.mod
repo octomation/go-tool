@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/fatih/color v1.16.0
 	github.com/golang/mock v1.6.0
-	github.com/spf13/cobra v1.7.0
+	github.com/spf13/cobra v1.8.0
 	github.com/stretchr/testify v1.8.4
 	go.octolab.org v0.12.2
 	go.octolab.org/toolkit/cli v0.6.3
