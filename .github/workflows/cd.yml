@@ -20,16 +20,16 @@ jobs:
 
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.1.1
         with: { fetch-depth: 0 }
       - name: Set up Go environment
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v5.0.0
         with: { go-version: 1.20.x, cache-dependency-path: tools/go.sum, check-latest: true }
 
       - name: Run fast check and tests
         run: make fast-check test
       - name: Publish the release
-        uses: goreleaser/goreleaser-action@v5
+        uses: goreleaser/goreleaser-action@v5.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GORELEASER_TOKEN }}
         with:
@@ -45,7 +45,7 @@ jobs:
 
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.1.1
         with: { fetch-depth: 0 }
 
       - name: Send notification
