@@ -39,6 +39,24 @@ jobs:
       - name: Install dependencies
         run: make env deps
 
+  docs:
+    name: Caching docs deps
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4.1.1
+        with: { fetch-depth: 0 }
+      - name: Set up Node.js environment
+        uses: actions/setup-node@v4.0.1
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: docs/package-lock.json
+          check-latest: true
+      - name: Install dependencies
+        run: ./Taskfile docs npm ci
+
   tools:
     name: Caching tools
     runs-on: ubuntu-latest

@@ -20,7 +20,7 @@ on:
       - 'go.{mod,sum}'
       - 'Makefile'
       - 'Taskfile'
-    tags: [ '!*' ]
+    tags: [ 'v*' ]
 
   schedule:
     - cron: 0 7 1 * * # at 07:00 on day-of-month 1, UTC
@@ -46,15 +46,10 @@ jobs:
         uses: actions/setup-go@v5.0.0
         with:
           go-version: 1.21.x
-          cache-dependency-path: tools/go.sum
           check-latest: true
-      - name: Set up environment
-        run: make tools
 
       - name: Run linter
-        run: make lint
-      - name: Run fast check the state
-        run: make fast-check
+        uses: golangci/golangci-lint-action@v3.7.0
 
   test:
     name: Testing
@@ -74,7 +69,9 @@ jobs:
         with: { fetch-depth: 0 }
       - name: Set up Go environment
         uses: actions/setup-go@v5.0.0
-        with: { go-version: '${{ matrix.go }}', check-latest: true }
+        with:
+          go-version: '${{ matrix.go }}'
+          check-latest: true
       - name: Set up environment
         run: make env deps
 
@@ -88,13 +85,30 @@ jobs:
         if: matrix.go == '1.21.x'
       - name: Store code coverage report
         uses: actions/upload-artifact@v4.0.0
-        if: matrix.go == '1.21.x'
         with: { name: code-coverage-report, path: c.out }
+        if: matrix.go == '1.21.x'
 
       - name: Check installation
         run: |
           make install
           [ $(ls bin/linux/*/* | wc -l) = 1 ]
+
+  publish:
+    name: Documentation
+    needs: [ test ]
+    uses: ./.github/workflows/cd.docs.yml
+    permissions:
+      id-token: write
+      pages: write
+    if: true
+
+  release:
+    name: Distribution
+    needs: [ test ]
+    uses: ./.github/workflows/cd.dist.yml
+    secrets:
+      GORELEASER_TOKEN: ${{ secrets.GORELEASER_TOKEN }}
+    if: startsWith(github.ref, 'refs/tags/v')
 
   report:
     name: Reporting
@@ -102,22 +116,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v4.1.1
-        with: { fetch-depth: 0 }
-
       - name: Fetch code coverage report
         uses: actions/download-artifact@v4.1.0
         with: { name: code-coverage-report }
-      - name: Send code coverage report to Codecov (codecov.io)
+      - name: Send code coverage report to Codecov
         uses: codecov/codecov-action@v3.1.4
         with: { files: c.out }
 
   notify:
     name: Notifying
-    needs: [ lint, test ]
+    needs: [ lint, report ]
     runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request' && (failure() || success())
+    if: github.event_name != 'pull_request'
+      && (failure() || success())
 
     steps:
       - name: Checkout the repository
