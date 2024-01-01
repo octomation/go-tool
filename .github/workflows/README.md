@@ -1,6 +1,6 @@
 [![Go Tool][social.preview]][preview.config]
 
-# 🧩 Tool
+# 📐 Tool
 
 GitHub Actions workflows.
 

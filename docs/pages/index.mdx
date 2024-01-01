@@ -8,7 +8,7 @@
 [![Mirror][mirror.icon]][mirror.page]
 [![Template][template.icon]][template.page]
 
-# 🧩 Tool
+# 📐 Tool
 
 Template for a typical CLI-tool written on Go.
 
