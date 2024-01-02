@@ -106,8 +106,12 @@ jobs:
     name: Distribution
     needs: [ test ]
     uses: ./.github/workflows/cd.dist.yml
+    permissions:
+      contents: write
+      packages: write
     secrets:
-      GORELEASER_TOKEN: ${{ secrets.GORELEASER_TOKEN }}
+      OCTOLAB_RELEASER_CLIENT_ID: ${{ secrets.OCTOLAB_RELEASER_CLIENT_ID }}
+      OCTOLAB_RELEASER_KEY: ${{ secrets.OCTOLAB_RELEASER_KEY }}
     if: startsWith(github.ref, 'refs/tags/v')
 
   report:

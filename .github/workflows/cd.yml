@@ -28,20 +28,86 @@ jobs:
 
       - name: Run fast check and tests
         run: make fast-check test
+      # the release uses github.token; the Formula goes to octolab/homebrew-tap
+      # with a token of the OctoLab Releaser App scoped to the tap (as indexit);
+      # minted whenever the release step runs, so a real release always has it
+      - name: Mint the tap token
+        id: tap
+        uses: actions/create-github-app-token@v3.3.0
+        with:
+          client-id: ${{ secrets.OCTOLAB_RELEASER_CLIENT_ID }}
+          private-key: ${{ secrets.OCTOLAB_RELEASER_KEY }}
+          owner: octolab
+          repositories: homebrew-tap
+          permission-contents: write
       - name: Publish the release
-        uses: goreleaser/goreleaser-action@v5.0.0
+        uses: goreleaser/goreleaser-action@v7.3.0
         env:
-          GITHUB_TOKEN: ${{ secrets.GORELEASER_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+          HOMEBREW_TAP_TOKEN: ${{ steps.tap.outputs.token }}
         with:
           distribution: goreleaser
-          version: latest
-          args: release --clean
+          version: v2.18.2
+          # a tag releases; a dispatch builds a snapshot and publishes nothing
+          args: ${{ startsWith(github.ref, 'refs/tags/v') && 'release --clean' || 'release --snapshot --clean --skip=publish' }}
+
+  # a job of its own: if publishing fails after the release is out, rerun
+  # only this job; the catalog keeps stable releases only
+  vanity:
+    name: Publishing the module
+    needs: [ release ]
+    if: startsWith(github.ref, 'refs/tags/v') && !contains(github.ref_name, '-')
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+
+    steps:
+      # without the Releaser credentials (a project generated from a template,
+      # a private repository on the Free plan) warn and end successfully
+      - name: Check the Releaser credentials
+        id: preflight
+        env:
+          OCTOLAB_RELEASER_CLIENT_ID: ${{ secrets.OCTOLAB_RELEASER_CLIENT_ID }}
+          OCTOLAB_RELEASER_KEY: ${{ secrets.OCTOLAB_RELEASER_KEY }}
+        run: |
+          if [ -n "${OCTOLAB_RELEASER_CLIENT_ID}" ] && [ -n "${OCTOLAB_RELEASER_KEY}" ]; then
+            echo 'ready=true' >> "${GITHUB_OUTPUT}"
+          else
+            echo '::warning title=Vanity::OCTOLAB_RELEASER_CLIENT_ID and OCTOLAB_RELEASER_KEY are not available to this repository; set them as organization or repository secrets to publish the module to go.octolab.org. Nothing was published.'
+            echo 'ready=false' >> "${GITHUB_OUTPUT}"
+          fi
+      - name: Checkout the repository
+        if: steps.preflight.outputs.ready == 'true'
+        uses: actions/checkout@v7.0.1
+        with: { persist-credentials: false }
+      - name: Set up Go environment
+        if: steps.preflight.outputs.ready == 'true'
+        uses: actions/setup-go@v7.0.0
+        with: { go-version: 1.27.4, cache: false }
+      - name: Mint the catalog token
+        if: steps.preflight.outputs.ready == 'true'
+        id: catalog
+        uses: actions/create-github-app-token@v3.3.0
+        with:
+          client-id: ${{ secrets.OCTOLAB_RELEASER_CLIENT_ID }}
+          private-key: ${{ secrets.OCTOLAB_RELEASER_KEY }}
+          owner: octolab
+          repositories: vanity
+          permission-contents: write
+      - name: Publish the module to go.octolab.org
+        if: steps.preflight.outputs.ready == 'true'
+        uses: octomation/vanity-action@v0.1.0
+        with:
+          token: ${{ steps.catalog.outputs.token }}
+          packages: all
 
   notify:
     name: Notifying
-    needs: [ release ]
+    needs: [ release, vanity ]
     runs-on: ubuntu-latest
-    if: failure() || success()
+    # success() is false when the vanity job is skipped, on a prerelease or a
+    # dispatch
+    if: ${{ !cancelled() }}
 
     steps:
       - name: Checkout the repository
