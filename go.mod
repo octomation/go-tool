@@ -9,7 +9,7 @@ require (
 	github.com/stretchr/testify v1.8.4
 	go.octolab.org v0.12.2
 	go.octolab.org/toolkit/cli v0.6.3
-	go.octolab.org/toolkit/config v0.0.4
+	go.octolab.org/toolkit/config v0.0.5
 )
 
 require (
